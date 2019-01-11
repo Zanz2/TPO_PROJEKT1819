@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
 import java.util.List;
 
@@ -34,6 +35,37 @@ import java.util.List;
  */
 public class UserSettingsActivity extends AppCompatPreferenceActivity {
 
+
+    float x1,x2,y1,y2;
+    public boolean onTouchEvent(MotionEvent touchevent){
+        super.onTouchEvent(touchevent);
+        switch (touchevent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchevent.getX();
+                y1 = touchevent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchevent.getX();
+                y2 = touchevent.getY();
+                float yDiff = Math.abs(y1-y2);
+                float xDiff = Math.abs(x1-x2);
+                if(xDiff>yDiff) { // če je razlika v x osi večje, gre za horizontaln premik
+                    if (x1 < x2) { //levo
+
+                    }else  { //desno
+                        Intent i = new Intent(UserSettingsActivity.this, Main2Activity.class);
+                        startActivity(i);
+                    }
+                }else{ // drugače je v y osi večja in gre za vertikaln
+                    if (y1 > y2) { //dol
+                        Intent i = new Intent(UserSettingsActivity.this, UserHistoryActivity.class);
+                        startActivity(i);
+                    }
+                }
+                break;
+        }
+        return false;
+    }
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.

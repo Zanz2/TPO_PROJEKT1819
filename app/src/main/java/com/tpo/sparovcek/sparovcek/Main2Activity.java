@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,12 +25,30 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
+
 public class Main2Activity extends AppCompatActivity {
     private String test_string = "hue hue hue";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        // tole spodi je primer uporabe grafa
+        final PieChartView pieChartView = findViewById(R.id.spendingChart);
+        List<SliceValue> pieData = new ArrayList<>();
+        pieData.add(new SliceValue(45, Color.BLUE).setLabel(" kategorija 1 test "));
+        pieData.add(new SliceValue(35, Color.RED).setLabel(" kategorija 2 test "));
+        pieData.add(new SliceValue(20, Color.MAGENTA).setLabel(" kategorija 3 test "));
+
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true);
+        pieChartData.setHasCenterCircle(true).setCenterText1(" Stroški zapravljanja ").setCenterText1FontSize(12);
+        pieChartView.setPieChartData(pieChartData);
+
+        //tu se konča primer uporabe grafa
 
         final TextView test = (TextView) findViewById(R.id.test);
         final TextView dodajv = (TextView) findViewById(R.id.dodajvnos);
@@ -81,10 +100,7 @@ public class Main2Activity extends AppCompatActivity {
                         startActivity(i);
                     }
                 }else{ // drugače je v y osi večja in gre za vertikaln
-                    if (y1 < y2) { //zdi se mi da gor
-                        Intent i = new Intent(Main2Activity.this, UserHistoryActivity.class);
-                        startActivity(i);
-                    }else { // zdi se mi da dol, ampak je itak isti activity, po želji zbrišemo
+                    if (y1 > y2) { //dol
                         Intent i = new Intent(Main2Activity.this, UserHistoryActivity.class);
                         startActivity(i);
                     }
