@@ -8,28 +8,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/pujsi_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme = "@style/AppTheme.NoActionBar"
+        >
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Main2Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserSettingsActivity"
-            android:label="@string/title_activity_user_settings" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserHistoryActivity"
-            android:label="@string/title_activity_user_history"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".OverviewGraphActivity"
-            android:label="@string/title_activity_overview_graph"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

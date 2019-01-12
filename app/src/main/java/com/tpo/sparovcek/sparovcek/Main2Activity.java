@@ -36,26 +36,10 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
-
-        final TextView test = (TextView) findViewById(R.id.test);
         final TextView dodajv = (TextView) findViewById(R.id.dodajvnos);
-        final TextView spr = (TextView) findViewById(R.id.spremenigeslot);
-        //test.setText(loadData());
 
-        //Izpis
-        test.setText(izpisi());
 
-        //Odjava
-        Button odjava = (Button) findViewById(R.id.odjava);
-        odjava.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(getIntent());
-                startActivity(new Intent(Main2Activity.this, MainActivity.class));
-            }
-        });
+
         //Dodaj vnos
         Button dodajvnos = (Button) findViewById(R.id.dodajvnosbtn);
         dodajvnos.setOnClickListener(new View.OnClickListener() {
@@ -97,53 +81,7 @@ public class Main2Activity extends AppCompatActivity {
         }
         return false;
     }
-    //Spremeni geslo + alert
-    public void spremenigeslo(View v){
-        AlertDialog.Builder a = new AlertDialog.Builder(this);
-        a.setTitle("Potrditev");
-        a.setMessage("Res zelite spremeniti geslo?");
-        a.setPositiveButton("DA", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String ime = loadData().split("#")[0].replaceAll("\\s+","");
-                String geslo = loadData().split("#")[1].replaceAll("\\s+","");
-                final TextView spr = (TextView) findViewById(R.id.spremenigeslot);
-                String novogeslo = spr.getText().toString();
-                saveData(ime + "#" + novogeslo);
-            }
-        });
 
-        a.setNegativeButton("NE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //
-            }
-        });
-        a.create().show();
-    }
-    public void ponastavi(View v){
-        AlertDialog.Builder a = new AlertDialog.Builder(this);
-        a.setTitle("Potrditev");
-        a.setMessage("Res zelite ponastaviti pb?");
-        a.setPositiveButton("DA", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                bazahelper bhelper = new bazahelper(getBaseContext());
-                SQLiteDatabase bd = bhelper.getReadableDatabase();
-                bhelper.deleteAll(bd);
-                finish();
-                startActivity(getIntent());
-            }
-        });
-
-        a.setNegativeButton("NE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //
-            }
-        });
-        a.create().show();
-    }
     void saveData(String s) {
         try {
             //spuci

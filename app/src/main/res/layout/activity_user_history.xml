@@ -19,13 +19,40 @@
         tools:context=".UserHistoryActivity"
         tools:showIn="@layout/activity_user_history">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zgodovina"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginRight="180dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                tools:layout_editor_absoluteX="39dp"
+                tools:layout_editor_absoluteY="198dp" />
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher_foreground"
+                tools:srcCompat="@mipmap/ic_launcher_foreground" />
+        </android.support.v7.widget.Toolbar>
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="92dp"
             android:text="test"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

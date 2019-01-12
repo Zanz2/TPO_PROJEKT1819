@@ -23,19 +23,18 @@ public class OverviewGraphActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview_graph);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         // tole spodi je primer uporabe grafa
         final PieChartView pieChartView = findViewById(R.id.spendingChart);
         List<SliceValue> pieData = new ArrayList<>();
-        pieData.add(new SliceValue(45, Color.BLUE).setLabel(" kategorija 1 test "));
-        pieData.add(new SliceValue(35, Color.RED).setLabel(" kategorija 2 test "));
-        pieData.add(new SliceValue(20, Color.MAGENTA).setLabel(" kategorija 3 test "));
+        pieData.add(new SliceValue(45, Color.parseColor("#3F51B5")).setLabel(" kategorija 1 test "));
+        pieData.add(new SliceValue(35, Color.parseColor("#607D8B")).setLabel(" kategorija 2 test "));
+        pieData.add(new SliceValue(20, Color.parseColor("#8BC34A")).setLabel(" kategorija 3 test "));
 
         PieChartData pieChartData = new PieChartData(pieData);
         pieChartData.setHasLabels(true);
-        pieChartData.setHasCenterCircle(true).setCenterText1(" Stroški zapravljanja ").setCenterText1FontSize(12);
+        pieChartData.setHasCenterCircle(true).setCenterText1(" Stroški zapravljanja ").setCenterText1FontSize(12).setCenterText1Color(Color.WHITE);
         pieChartView.setPieChartData(pieChartData);
 
         //tu se konča primer uporabe grafa
