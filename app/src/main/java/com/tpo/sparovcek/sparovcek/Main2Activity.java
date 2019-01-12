@@ -36,19 +36,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // tole spodi je primer uporabe grafa
-        final PieChartView pieChartView = findViewById(R.id.spendingChart);
-        List<SliceValue> pieData = new ArrayList<>();
-        pieData.add(new SliceValue(45, Color.BLUE).setLabel(" kategorija 1 test "));
-        pieData.add(new SliceValue(35, Color.RED).setLabel(" kategorija 2 test "));
-        pieData.add(new SliceValue(20, Color.MAGENTA).setLabel(" kategorija 3 test "));
 
-        PieChartData pieChartData = new PieChartData(pieData);
-        pieChartData.setHasLabels(true);
-        pieChartData.setHasCenterCircle(true).setCenterText1(" Stroški zapravljanja ").setCenterText1FontSize(12);
-        pieChartView.setPieChartData(pieChartData);
-
-        //tu se konča primer uporabe grafa
 
         final TextView test = (TextView) findViewById(R.id.test);
         final TextView dodajv = (TextView) findViewById(R.id.dodajvnos);

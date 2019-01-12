@@ -15,22 +15,14 @@ public class UserHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_history);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
     }
 
     float x1,x2,y1,y2;
     public boolean onTouchEvent(MotionEvent touchevent){
-        super.onTouchEvent(touchevent);
+        //super.onTouchEvent(touchevent);
         switch (touchevent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchevent.getX();
@@ -49,7 +41,8 @@ public class UserHistoryActivity extends AppCompatActivity {
                     }
                 }else{ // drugače je v y osi večja in gre za vertikaln
                     if (y1 > y2) { //dol
-
+                        Intent i = new Intent(UserHistoryActivity.this, Main2Activity.class);
+                        startActivity(i);
                     }else { // gor
                         Intent i = new Intent(UserHistoryActivity.this, Main2Activity.class);
                         startActivity(i);

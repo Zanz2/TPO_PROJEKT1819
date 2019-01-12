@@ -1,6 +1,7 @@
 package com.tpo.sparovcek.sparovcek;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 public class OverviewGraphActivity extends AppCompatActivity {
 
@@ -18,14 +26,20 @@ public class OverviewGraphActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        // tole spodi je primer uporabe grafa
+        final PieChartView pieChartView = findViewById(R.id.spendingChart);
+        List<SliceValue> pieData = new ArrayList<>();
+        pieData.add(new SliceValue(45, Color.BLUE).setLabel(" kategorija 1 test "));
+        pieData.add(new SliceValue(35, Color.RED).setLabel(" kategorija 2 test "));
+        pieData.add(new SliceValue(20, Color.MAGENTA).setLabel(" kategorija 3 test "));
+
+        PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasLabels(true);
+        pieChartData.setHasCenterCircle(true).setCenterText1(" Stroški zapravljanja ").setCenterText1FontSize(12);
+        pieChartView.setPieChartData(pieChartData);
+
+        //tu se konča primer uporabe grafa
+
     }
 
     float x1,x2,y1,y2;
