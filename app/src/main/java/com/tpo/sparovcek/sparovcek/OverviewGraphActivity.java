@@ -53,17 +53,19 @@ public class OverviewGraphActivity extends AppCompatActivity {
                 y2 = touchevent.getY();
                 float yDiff = Math.abs(y1-y2);
                 float xDiff = Math.abs(x1-x2);
-                if(xDiff>yDiff) { // če je razlika v x osi večje, gre za horizontaln premik
-                    if (x1 < x2) { //levo
-                        Intent i = new Intent(OverviewGraphActivity.this, Main2Activity.class);
-                        startActivity(i);
-                    }else  { //desno
+                if (xDiff > 300 || yDiff > 250) {
+                    if(xDiff>yDiff) { // če je razlika v x osi večje, gre za horizontaln premik
+                        if (x1 < x2) { //levo
+                            Intent i = new Intent(OverviewGraphActivity.this, Main2Activity.class);
+                            startActivity(i);
+                        }else  { //desno
 
-                    }
-                }else{ // drugače je v y osi večja in gre za vertikaln
-                    if (y1 > y2) { //dol
-                        Intent i = new Intent(OverviewGraphActivity.this, UserHistoryActivity.class);
-                        startActivity(i);
+                        }
+                    }else{ // drugače je v y osi večja in gre za vertikaln
+                        if (y1 > y2) { //dol
+                            Intent i = new Intent(OverviewGraphActivity.this, UserHistoryActivity.class);
+                            startActivity(i);
+                        }
                     }
                 }
                 break;
