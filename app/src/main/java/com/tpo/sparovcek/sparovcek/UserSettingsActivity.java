@@ -71,7 +71,7 @@ public class UserSettingsActivity extends AppCompatActivity {
                         if (x1 < x2) { //levo
 
                         } else { //desno
-                            Intent i = new Intent(UserSettingsActivity.this, Main2Activity.class);
+                            Intent i = new Intent(UserSettingsActivity.this, OverviewGraphActivity.class);
                             startActivity(i);
                         }
                     } else { // drugače je v y osi večja in gre za vertikaln

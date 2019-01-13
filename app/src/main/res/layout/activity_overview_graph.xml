@@ -41,7 +41,20 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_overview_graph" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_overview_graph" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="86dp"
+        android:layout_height="90dp"
+        android:clickable="true"
+        android:onClick="plus"
+        android:src="@drawable/ic_info_black_24dp"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="right|bottom"
+        tools:srcCompat="@tools:sample/avatars" />
 
 
 </android.support.design.widget.CoordinatorLayout>

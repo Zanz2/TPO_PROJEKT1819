@@ -24,6 +24,14 @@ public class OverviewGraphActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview_graph);
 
+        FloatingActionButton plus = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(getIntent());
+                startActivity(new Intent(OverviewGraphActivity.this, Main2Activity.class));
+            }
+        });
 
         // tole spodi je primer uporabe grafa
         final PieChartView pieChartView = findViewById(R.id.spendingChart);
@@ -56,7 +64,8 @@ public class OverviewGraphActivity extends AppCompatActivity {
                 if (xDiff > 300 || yDiff > 250) {
                     if(xDiff>yDiff) { // če je razlika v x osi večje, gre za horizontaln premik
                         if (x1 < x2) { //levo
-                            Intent i = new Intent(OverviewGraphActivity.this, Main2Activity.class);
+
+                            Intent i = new Intent(OverviewGraphActivity.this, UserSettingsActivity.class);
                             startActivity(i);
                         }else  { //desno
 

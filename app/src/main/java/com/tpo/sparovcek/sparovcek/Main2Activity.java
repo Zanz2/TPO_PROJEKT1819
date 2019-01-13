@@ -13,7 +13,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ToggleButton;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,13 +35,31 @@ import lecho.lib.hellocharts.view.PieChartView;
 
 public class Main2Activity extends AppCompatActivity {
     private String test_string = "hue hue hue";
+    private static final String[] kategorije = new String[] {
+            "Avto", "Trgovina", "Ostalo"
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
         final TextView dodajv = (TextView) findViewById(R.id.dodajvnos);
+        final TextView naziv = findViewById(R.id.naziv);
+        final TextView znesek = findViewById(R.id.znesek);
 
+        //autocomplete text za kategorije
+        final AutoCompleteTextView m = findViewById(R.id.autoCompleteTextView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, kategorije);
+        m.setAdapter(adapter);
+
+        final ToggleButton tb = findViewById(R.id.toggleButton);
+        //dodajv.setText(tb.getText());
+
+        //datum
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy#HH:mm");
+        final String currentDateandTime = sdf.format(new Date());
+        //dodajv.setText(currentDateandTime);
 
 
         //Dodaj vnos
@@ -45,9 +67,13 @@ public class Main2Activity extends AppCompatActivity {
         dodajvnos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dodaj(dodajv.getText().toString());
+                String vnos = "" + naziv.getText() + "#" + m.getText() + "#" + tb.getText() + "#" + znesek.getText() + "€#" + currentDateandTime;
+                dodaj(vnos);
+                //dodajv.setText(vnos);
                 finish();
-                startActivity(getIntent());
+                Intent i = new Intent(Main2Activity.this, OverviewGraphActivity.class);
+                startActivity(i);
+                //startActivity(getIntent());
             }
         });
     }
@@ -66,11 +92,10 @@ public class Main2Activity extends AppCompatActivity {
                 if (xDiff > 300 || yDiff > 250) {
                     if (xDiff > yDiff) { // če je razlika v x osi večje, gre za horizontaln premik
                         if (x1 < x2) { //levo
-                            Intent i = new Intent(Main2Activity.this, UserSettingsActivity.class);
-                            startActivity(i);
-                        } else { //desno
                             Intent i = new Intent(Main2Activity.this, OverviewGraphActivity.class);
                             startActivity(i);
+                        } else { //desno
+
                         }
                     } else { // drugače je v y osi večja in gre za vertikaln
                         if (y1 > y2) { //dol

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if(ime.equals(name.getText().toString()) & geslo.equals(pin.getText().toString())){
                     finish();
                     startActivity(getIntent());
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                    startActivity(new Intent(MainActivity.this, OverviewGraphActivity.class));
                 }else{
                     test.setText("Napačno uporabniško ime ali geslo!");
                 }
