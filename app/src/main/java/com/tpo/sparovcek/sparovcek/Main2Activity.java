@@ -35,6 +35,7 @@ import lecho.lib.hellocharts.view.PieChartView;
 
 public class Main2Activity extends AppCompatActivity {
     private String test_string = "hue hue hue";
+    public ArrayList<String> k = new ArrayList<String>();
     private static final String[] kategorije = new String[] {
             "Avto", "Trgovina", "Ostalo"
     };
@@ -43,13 +44,30 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
+        String kat = loadData();
+        for (int i = 0; i < kat.split("#").length; i++){
+            try{
+                if(!k.contains(kat.split("#")[i]) & !kat.split("#")[i].equals("")){
+                    k.add(kat.split("#")[i]);
+                }
+            }catch (Exception e){}
+        }
+
+
+        k.add("Avto");
+        k.add("položnice");
+        k.add("hrana");
+        k.add("zabava");
+
         final TextView naziv = findViewById(R.id.naziv);
         final TextView znesek = findViewById(R.id.znesek);
+        final TextView napaka = findViewById(R.id.napaka);
 
         //autocomplete text za kategorije
         final AutoCompleteTextView m = findViewById(R.id.autoCompleteTextView);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, kategorije);
+                android.R.layout.simple_dropdown_item_1line, k);
         m.setAdapter(adapter);
 
         final ToggleButton tb = findViewById(R.id.toggleButton);
@@ -66,13 +84,22 @@ public class Main2Activity extends AppCompatActivity {
         dodajvnos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String vnos = "" + naziv.getText() + "#" + m.getText() + "#" + tb.getText() + "#" + znesek.getText() + "€#" + currentDateandTime;
-                dodaj(vnos);
-                //dodajv.setText(vnos);
-                finish();
-                Intent i = new Intent(Main2Activity.this, OverviewGraphActivity.class);
-                startActivity(i);
-                //startActivity(getIntent());
+                if(!k.contains(m.getText())){
+                    k.add(m.getText().toString());
+                    saveData(loadData() + "#" + m.getText().toString());
+                }
+                if(!znesek.getText().toString().equals("") & !naziv.getText().toString().equals("") & !m.getText().toString().equals("")){
+                    String vnos = "" + naziv.getText() + "#" + m.getText() + "#" + tb.getText() + "#" + znesek.getText() + "€#" + currentDateandTime;
+                    dodaj(vnos);
+                    //dodajv.setText(vnos);
+                    finish();
+                    Intent i = new Intent(Main2Activity.this, OverviewGraphActivity.class);
+                    startActivity(i);
+                    //startActivity(getIntent());
+                }else {
+                    napaka.setText("Napaka pri vnosu podatkov.");
+                }
+
             }
         });
     }
@@ -113,7 +140,7 @@ public class Main2Activity extends AppCompatActivity {
             //spuci
             //s = "";
             //s = loadData() + " " + s;
-            File file = new File(getFilesDir(), "neki.txt");
+            File file = new File(getFilesDir(), "kategorije.txt");
             file.createNewFile(); // if file already exists will do nothing
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(s.getBytes());
@@ -125,14 +152,14 @@ public class Main2Activity extends AppCompatActivity {
     }
     String loadData() {
         try {
-            File file = new File(getFilesDir(), "neki.txt");
+            File file = new File(getFilesDir(), "kategorije.txt");
             file.createNewFile(); // if file already exists will do nothing
             InputStream is = new BufferedInputStream(new FileInputStream(file));
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String input;
             test_string = "";
             while ((input = br.readLine()) != null)
-                test_string += input + "\n";
+                test_string += input;
             br.close();
             is.close();
         } catch (Exception e) {

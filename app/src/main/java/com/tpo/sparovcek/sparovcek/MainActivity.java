@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Button register = (Button) findViewById(R.id.button_register);
 
         //za nakonc
-        /*
+
         if(test_string == ""){
             login.setVisibility(View.INVISIBLE);
             register.setVisibility(View.VISIBLE);
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             login.setVisibility(View.VISIBLE);
             register.setVisibility(View.INVISIBLE);
         }
-        */
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,8 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
     boolean preveri_geslo(String g){
         if(g.length() > 1)
-        //test
-        //if(g.length() == 4)
             return true;
         return false;
     }

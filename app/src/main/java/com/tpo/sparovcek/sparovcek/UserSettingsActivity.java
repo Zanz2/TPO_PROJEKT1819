@@ -141,6 +141,7 @@ public class UserSettingsActivity extends AppCompatActivity {
                 bazahelper bhelper = new bazahelper(getBaseContext());
                 SQLiteDatabase bd = bhelper.getReadableDatabase();
                 bhelper.deleteAll(bd);
+                kategorije("");
                 finish();
                 startActivity(getIntent());
             }
@@ -160,6 +161,21 @@ public class UserSettingsActivity extends AppCompatActivity {
             //s = "";
             //s = loadData() + " " + s;
             File file = new File(getFilesDir(), "neki.txt");
+            file.createNewFile(); // if file already exists will do nothing
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(s.getBytes());
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    void kategorije(String s) {
+        try {
+            //spuci
+            //s = "";
+            //s = loadData() + " " + s;
+            File file = new File(getFilesDir(), "kategorije.txt");
             file.createNewFile(); // if file already exists will do nothing
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(s.getBytes());
