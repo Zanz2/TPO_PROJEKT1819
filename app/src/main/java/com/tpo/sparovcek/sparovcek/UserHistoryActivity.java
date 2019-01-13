@@ -38,22 +38,24 @@ public class UserHistoryActivity extends AppCompatActivity {
 
         vnosi = new ArrayList<>();
 
-
-        String[] vrstice = izpisi().split("\n");
-        for(int i = 0;i<vrstice.length;i++){
-            vnosi.add(new Vnos(vrstice[i]));
-        }
+        String izpisi = izpisi();
+        if(izpisi!="") {
+            String[] vrstice = izpisi.split("\n");
+            for (int i = 0; i < vrstice.length; i++) {
+                vnosi.add(new Vnos(vrstice[i]));
+            }
         /*
         final String[] newvrstica = new String[vrstica.length];
         */
-        //izpis.setText(Arrays.toString(vrstica));
-        //izpis.setText(izpisi().replaceAll("#", "    "));
+            //izpis.setText(Arrays.toString(vrstica));
+            //izpis.setText(izpisi().replaceAll("#", "    "));
 
-        rv = (RecyclerView)findViewById(R.id.rv);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
-        RVAdapter adapter = new RVAdapter(vnosi);
-        rv.setAdapter(adapter);
+            rv = (RecyclerView) findViewById(R.id.rv);
+            LinearLayoutManager llm = new LinearLayoutManager(this);
+            rv.setLayoutManager(llm);
+            RVAdapter adapter = new RVAdapter(vnosi);
+            rv.setAdapter(adapter);
+        }
 
     }
 
