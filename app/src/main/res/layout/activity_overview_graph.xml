@@ -49,12 +49,13 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="86dp"
         android:layout_height="90dp"
+        android:layout_marginTop="60dp"
         android:clickable="true"
-        android:onClick="plus"
-        android:src="@drawable/ic_info_black_24dp"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="right|bottom"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_anchorGravity="right|top"
+        tools:srcCompat="@android:drawable/ic_input_add"
+        android:src="@android:drawable/ic_input_add"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

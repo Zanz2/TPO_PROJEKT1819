@@ -48,17 +48,6 @@
 
 
     <EditText
-        android:id="@+id/dodajvnos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="76dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
         android:id="@+id/naziv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,7 +119,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:checked="false"
+        android:nestedScrollingEnabled="false"
+        android:selectAllOnFocus="false"
         android:text="ToggleButton"
+        android:textIsSelectable="false"
         android:textOff="-"
         android:textOn="+"
         android:textSize="30sp"

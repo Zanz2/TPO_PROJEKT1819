@@ -7,34 +7,57 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.github.florent37.expansionpanel.viewgroup.ExpansionLayoutCollection;
+
 public class UserHistoryActivity extends AppCompatActivity {
+
+    RecyclerView rv;
+    private List<Vnos> vnosi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_history);
 
-        final TextView izpis = findViewById(R.id.izpis);
-        String[] vrstica = izpisi().split("\n");
+        //final TextView izpis = findViewById(R.id.izpis);
+
+        vnosi = new ArrayList<>();
+
+
+        String[] vrstice = izpisi().split("\n");
+        for(int i = 0;i<vrstice.length;i++){
+            vnosi.add(new Vnos(vrstice[i]));
+        }
         /*
         final String[] newvrstica = new String[vrstica.length];
-        for(int i = vrstica.length; i > 0; i--){
-            newvrstica[vrstica.length-i] = vrstica[i];
-        }
         */
         //izpis.setText(Arrays.toString(vrstica));
-        izpis.setText(izpisi().replaceAll("#", "    "));
+        //izpis.setText(izpisi().replaceAll("#", "    "));
 
-
+        rv = (RecyclerView)findViewById(R.id.rv);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+        RVAdapter adapter = new RVAdapter(vnosi);
+        rv.setAdapter(adapter);
 
     }
+
+
 
     float x1,x2,y1,y2;
     public boolean onTouchEvent(MotionEvent touchevent){
@@ -75,7 +98,7 @@ public class UserHistoryActivity extends AppCompatActivity {
         bazahelper bhelper = new bazahelper(this);
         SQLiteDatabase bd = bhelper.getReadableDatabase();
         String[] p = {baza.pb._ID, baza.pb.COLUMN_NAME_TITLE};
-        String selectQuery = "SELECT  * FROM " + baza.pb.TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + baza.pb.TABLE_NAME + " ORDER BY "+ baza.pb._ID +" DESC ";
         Cursor c = bd.rawQuery(selectQuery, null);
         List i = new ArrayList<>();
         if (c.moveToFirst()) {
@@ -90,4 +113,35 @@ public class UserHistoryActivity extends AppCompatActivity {
         }
         return aaa;
     }
+
+    class Vnos {
+        public String naziv;
+        public String kategorija;
+        public String znesek;
+        public BigDecimal znesek_value;
+        public String timestamp;
+        public String datetime;
+
+        Vnos(String value) {
+            String[] values_arr = value.split("#");
+            if(values_arr.length==1){
+                naziv = values_arr[0];
+                kategorija = values_arr[0];
+                znesek = values_arr[0];
+                znesek_value = new BigDecimal(values_arr[0]);
+                timestamp = values_arr[0];
+                datetime = values_arr[0];
+            }else {
+                naziv = values_arr[0];
+                kategorija = values_arr[1];
+                znesek = values_arr[2] + " " + values_arr[3];
+                znesek_value = new BigDecimal(values_arr[2] + values_arr[3].replace("€", ""));
+                timestamp = values_arr[4];
+                datetime = values_arr[5];
+            }
+        }
+    }
+
+
 }
+

@@ -68,7 +68,8 @@ public class OverviewGraphActivity extends AppCompatActivity {
                             Intent i = new Intent(OverviewGraphActivity.this, UserSettingsActivity.class);
                             startActivity(i);
                         }else  { //desno
-
+                            Intent i = new Intent(OverviewGraphActivity.this, Main2Activity.class);
+                            startActivity(i);
                         }
                     }else{ // drugače je v y osi večja in gre za vertikaln
                         if (y1 > y2) { //dol

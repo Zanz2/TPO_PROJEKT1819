@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     boolean preveri_geslo(String g){
-        if(g.length() == 1)
+        if(g.length() > 1)
         //test
         //if(g.length() == 4)
             return true;

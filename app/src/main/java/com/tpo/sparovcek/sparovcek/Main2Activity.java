@@ -43,7 +43,6 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        final TextView dodajv = (TextView) findViewById(R.id.dodajvnos);
         final TextView naziv = findViewById(R.id.naziv);
         final TextView znesek = findViewById(R.id.znesek);
 
