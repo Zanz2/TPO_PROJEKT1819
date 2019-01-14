@@ -19,6 +19,10 @@ import java.io.InputStreamReader;
 public class MainActivity extends AppCompatActivity {
     private String test_string = "";
 
+
+    public void onBackPressed() {
+        //do nothing
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             name.setText(ime);
             //za testerat
             String geslo = loadData().split("#")[1].replaceAll("\\s+", "");
-            pin.setText(geslo);
+            //pin.setText(geslo);
             //test.setText("samzdatoteke" + loadData());
             test.setText("");
         }
